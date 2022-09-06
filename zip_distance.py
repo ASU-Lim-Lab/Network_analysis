@@ -7,14 +7,14 @@ import pandas as pd
 search = SearchEngine(simple_or_comprehensive=SearchEngine.SimpleOrComprehensiveArgEnum.simple)
 
 print("Opening metadata")
-zip_frame = pd.read_excel(r'D:\Projects\WasteWater\historical\network\matthew\emergence_ablct_hosp_meta2.xlsx', sheet_name='Omicron', usecols=['GISAID_name', 'Zip code'])
-zip_frame.set_index('GISAID_name', inplace=True)
-zip_dict = zip_frame['Zip code'].to_dict()
+zip_frame = pd.read_csv('Sample_metadata.csv')
+zip_frame.set_index('Sample_name', inplace=True)
+zip_dict = zip_frame['Sample_zip'].to_dict()
 
 #print(zip_dict)
 
 print("Opening edge list")
-edge_frame = pd.read_csv(r'D:\Projects\WasteWater\historical\network\matthew\omicron\abctl_hosp\no_dedup\omi_ambig30Trim.csv')
+edge_frame = pd.read_csv('Sample_mafftdeduplicated_edges_set_6e-5.csv')
 print("Edge list opened")
 
 
@@ -47,4 +47,4 @@ for index, row in edge_frame.iterrows():
 edge_frame['phys_dist'] = distance_list
 
 print("Saving")
-edge_frame.to_csv(r'D:\Projects\WasteWater\historical\network\matthew\omicron\abctl_hosp\no_dedup\omi_ambig30Trim_phys_dist.csv', index=False)
+edge_frame.to_csv('Sample_phys_distDEDUP.csv', index=False)

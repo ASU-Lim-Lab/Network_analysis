@@ -102,13 +102,10 @@ def nearest_neighbor(input_filename):
     
     
     for each_column in column_list:
-        #print(each_column)
-        distanceMin = neighborDict[each_column] - (neighborDict[each_column] * neighborVariance)
-        #print(distanceMin)
-        #distanceMax = neighborDict[eachIndex] + (neighborDict[eachIndex] * neighborVariance)
+        
         distanceMax = 0.00006
-        #print(matrixFile)
-        neighbor_frame = matrixFile[(matrixFile[each_column]==distanceMin) & (matrixFile[each_column]<= distanceMax)]
+        
+        neighbor_frame = matrixFile[(matrixFile[each_column]<= distanceMax)]
 
                 
         for index, row in neighbor_frame.iterrows():
